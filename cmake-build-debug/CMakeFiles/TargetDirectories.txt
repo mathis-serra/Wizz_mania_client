@@ -1,3 +1,3 @@
-C:/Users/drvba/OneDrive/Bureau/Wizz_mania_client/cmake-build-debug/CMakeFiles/Wizz_mania_client2.dir
-C:/Users/drvba/OneDrive/Bureau/Wizz_mania_client/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/drvba/OneDrive/Bureau/Wizz_mania_client/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/mathisserra/Desktop/Github/B2_Laplateforme/Wizz_mania_client/cmake-build-debug/CMakeFiles/Wizz_mania_client2.dir
+/Users/mathisserra/Desktop/Github/B2_Laplateforme/Wizz_mania_client/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/mathisserra/Desktop/Github/B2_Laplateforme/Wizz_mania_client/cmake-build-debug/CMakeFiles/rebuild_cache.dir

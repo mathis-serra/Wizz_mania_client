@@ -1,20 +1,20 @@
-C:\Users\drvba\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=C:/Users/drvba/AppData/Local/Programs/CLion/bin/ninja/win/x64/ninja.exe -DCMAKE_C_COMPILER=C:/msys64/mingw64/bin/gcc.exe -DCMAKE_CXX_COMPILER=C:/msys64/mingw64/bin/g++.exe -G Ninja -S C:\Users\drvba\OneDrive\Bureau\Wizz_mania_client -B C:\Users\drvba\OneDrive\Bureau\Wizz_mania_client\cmake-build-debug
--- The C compiler identification is GNU 14.2.0
--- The CXX compiler identification is GNU 14.2.0
+/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/aarch64/ninja -G Ninja -S /Users/mathisserra/Desktop/Github/B2_Laplateforme/Wizz_mania_client -B /Users/mathisserra/Desktop/Github/B2_Laplateforme/Wizz_mania_client/cmake-build-debug
+-- The C compiler identification is AppleClang 14.0.3.14030022
+-- The CXX compiler identification is AppleClang 14.0.3.14030022
 -- Detecting C compiler ABI info
 -- Detecting C compiler ABI info - done
--- Check for working C compiler: C:/msys64/mingw64/bin/gcc.exe - skipped
+-- Check for working C compiler: /Library/Developer/CommandLineTools/usr/bin/cc - skipped
 -- Detecting C compile features
 -- Detecting C compile features - done
 -- Detecting CXX compiler ABI info
 -- Detecting CXX compiler ABI info - done
--- Check for working CXX compiler: C:/msys64/mingw64/bin/g++.exe - skipped
+-- Check for working CXX compiler: /Library/Developer/CommandLineTools/usr/bin/c++ - skipped
 -- Detecting CXX compile features
 -- Detecting CXX compile features - done
 -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
 -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
 -- Found Threads: TRUE
--- Found SFML 2.6.1 in C:/msys64/mingw64/lib/cmake/SFML
--- Configuring done (6.6s)
+-- Found SFML 2.6.1 in /opt/homebrew/lib/cmake/SFML
+-- Configuring done (1.0s)
 -- Generating done (0.0s)
--- Build files have been written to: C:/Users/drvba/OneDrive/Bureau/Wizz_mania_client/cmake-build-debug
+-- Build files have been written to: /Users/mathisserra/Desktop/Github/B2_Laplateforme/Wizz_mania_client/cmake-build-debug
