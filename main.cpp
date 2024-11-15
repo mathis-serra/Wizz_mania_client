@@ -3,6 +3,7 @@
 #include <iostream>
 
 
+
 int main() {
     Client_2 client("10.10.140.255", 42000);
     std::cerr << "Tentative de connexion au serveur avec Client_2..." << std::endl;
