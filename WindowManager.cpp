@@ -69,7 +69,7 @@ void WindowManager::openWindow() {
 
         m_text.setString(userInput);
 
-        m_window.clear(sf::Color::Black);
+        m_window.clear(sf::Color(27, 105, 95));
         m_window.draw(m_text);
         m_window.display();
 

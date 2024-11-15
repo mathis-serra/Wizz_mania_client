@@ -1,73 +1,77 @@
 #include "Client_2.h"
+#include <cerrno>
+#include <cstring>
 
-
-Client_2::Client_2(const std::string &ipAddress, int port) : ipAddress(ipAddress), port(port), clientSocket(INVALID_SOCKET) {
-    int result = WSAStartup(MAKEWORD(2, 2), &wsaData);
-    if (result != 0) {
-        std::cerr << "Erreur d'initialisation de WinSock : " << result << std::endl;
-    }
-}
+Client_2::Client_2(const std::string &ipAddress, int port)
+    : ipAddress(ipAddress), port(port), clientSocket(-1) {}
 
 Client_2::~Client_2() {
-    closesocket(clientSocket);
-    WSACleanup();
+    if (clientSocket != -1) {
+        close(clientSocket);
+    }
     if (receiveThread.joinable()) {
         receiveThread.join();
     }
 }
 
 bool Client_2::connectToServer() {
-    clientSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
-    if (clientSocket == INVALID_SOCKET) {
-        std::cerr << "Erreur de création du socket : " << WSAGetLastError() << std::endl;
-        WSACleanup();
+    clientSocket = socket(AF_INET, SOCK_STREAM, 0);
+    if (clientSocket == -1) {
+        std::cerr << "Erreur : impossible de créer le socket" << std::endl;
         return false;
     }
 
-    sockaddr_in serverAddress;
+    sockaddr_in serverAddress{};
     serverAddress.sin_family = AF_INET;
     serverAddress.sin_port = htons(port);
-    InetPton(AF_INET, ipAddress.c_str(), &serverAddress.sin_addr);
 
-    int result = connect(clientSocket, (SOCKADDR*)&serverAddress, sizeof(serverAddress));
-    if (result == SOCKET_ERROR) {
-        std::cerr << "Échec de la connexion au serveur : " << WSAGetLastError() << std::endl;
-        closesocket(clientSocket);
-        WSACleanup();
+    if (inet_pton(AF_INET, ipAddress.c_str(), &serverAddress.sin_addr) <= 0) {
+        std::cerr << "Erreur : adresse IP invalide" << std::endl;
+        close(clientSocket); // Fermer le socket si inutilisable
         return false;
     }
 
-    std::cout << "Connecté au serveur !" << std::endl;
+    if (connect(clientSocket, (sockaddr*)&serverAddress, sizeof(serverAddress)) == -1) {
+        std::cerr << "Erreur : impossible de se connecter au serveur" << std::endl;
+        close(clientSocket); // Fermer le socket si inutilisable
+        return false;
+    }
 
+    std::cout << "Connexion établie avec le serveur" << std::endl;
+
+    // Démarrer un thread pour recevoir des messages
     receiveThread = std::thread(&Client_2::receiveMessage, this);
 
     return true;
-}
-
-void Client_2::sendMessage(const std::string& message) {
-    if (message == "exit") return;
-
-    int sendResult = send(clientSocket, message.c_str(), message.size() + 1, 0);
-    if (sendResult == SOCKET_ERROR) {
-        std::cerr << "Erreur d'envoi : " << WSAGetLastError() << std::endl;
-    }
 }
 
 
 void Client_2::receiveMessage() {
     char buffer[1024];
     while (true) {
-        int bytesReceived = recv(clientSocket, buffer, sizeof(buffer) - 1, 0);
+        ssize_t bytesReceived = recv(clientSocket, buffer, sizeof(buffer) - 1, 0);
         if (bytesReceived > 0) {
             buffer[bytesReceived] = '\0';
-            std::cout << "\nMessage reçu : " << buffer << "\n> ";
+            std::cout << "Message reçu : " << buffer << std::endl;
         } else if (bytesReceived == 0) {
-            std::cout << "Connexion fermée par le serveur." << std::endl;
+            std::cout << "Le serveur a fermé la connexion" << std::endl;
             break;
         } else {
-            std::cerr << "Erreur de réception : " << WSAGetLastError() << std::endl;
+            std::cerr << "Erreur lors de la réception du message : " << strerror(errno) << std::endl;
             break;
+        }
+        if (clientSocket == -1) {
+            std::cerr << "Socket invalide. Impossible de recevoir des messages." << std::endl;
+            return;
         }
     }
 }
 
+void Client_2::sendMessage(const std::string &message) {
+    ssize_t bytesSent = send(clientSocket, message.c_str(), message.length(), 0);
+    if (bytesSent == -1) {
+        std::cerr << "Erreur lors de l'envoi du message" << std::endl;
+    } else {
+        std::cout << "Message envoyé : " << message << std::endl;
+    }
+}
