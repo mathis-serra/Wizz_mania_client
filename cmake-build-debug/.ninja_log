@@ -1,8 +1,6 @@
 # ninja log v6
-1	123	1731666742283623761	build.ninja	4d209b9b7f697647
-3	407	1731665991389335163	CMakeFiles/Wizz_mania_client2.dir/main.cpp.o	41d26f0a4a1a10d1
-3	327	1731582499932339591	CMakeFiles/Wizz_mania_client2.dir/Client_2.cpp.o	3f6702fa1f28abeb
-408	443	1731665991793881764	Wizz_mania_client2	e496b388a585f879
-3	278	1731666745997533778	CMakeFiles/Wizz_mania_client2.dir/main.cpp.o	b69b3d96f5a2e7cb
-4	296	1731666745997954237	CMakeFiles/Wizz_mania_client2.dir/Client_2.cpp.o	38d7a0fb137cb9bc
-296	318	1731666746290044912	Wizz_mania_client2	e496b388a585f879
+4343	4661	7533651290071992	Wizz_mania_client2.exe	708af11ab36a7dbd
+26	2993	7533651246908070	CMakeFiles/Wizz_mania_client2.dir/Client_2.cpp.obj	3a94d28a1b029a4a
+20	3595	7533651246850940	CMakeFiles/Wizz_mania_client2.dir/main.cpp.obj	54a4753897e58e5d
+3	267	7533723035968476	build.ninja	b48036b9de2a5162
+32	4342	7533651246959323	CMakeFiles/Wizz_mania_client2.dir/WindowManager.cpp.obj	e4fd524ad49af3e3
