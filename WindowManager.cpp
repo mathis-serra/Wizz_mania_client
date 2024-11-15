@@ -24,16 +24,16 @@ WindowManager::WindowManager(Client_2 &client)
 #include <chrono>
 
 void wizzEffect(sf::RenderWindow& window) {
-    sf::Vector2i originalPosition = window.getPosition();  // Position originale de la fenêtre
-    int offset = 10;  // Valeur de décalage pour la vibration
+    sf::Vector2i originalPosition = window.getPosition();  // origin of th window
+    int offset = 10;  // offset value
 
-    // Vibration de la fenêtre
+    // Vibration for the window
     for (int i = 0; i < 10; ++i) {
         window.setPosition(sf::Vector2i(originalPosition.x + (i % 2 == 0 ? offset : -offset), originalPosition.y));
-        std::this_thread::sleep_for(std::chrono::milliseconds(50));  // Petite pause pour créer l'effet
+        std::this_thread::sleep_for(std::chrono::milliseconds(50));  // pause for effect
     }
 
-    // Restaurer la position originale
+    // Restore original position
     window.setPosition(originalPosition);
 }
 
@@ -49,15 +49,13 @@ void WindowManager::openWindow() {
             if (event.type == sf::Event::Closed)
                 m_window.close();
             if (event.type == sf::Event::TextEntered) {
-                // Si l'utilisateur appuie sur Entrée, on envoie le message
-                if (event.text.unicode == '\r') {  // '\r' est le code pour Entrée
+                if (event.text.unicode == '\r') {
                     if (!userInput.empty()) {
-                        m_client.sendMessage(userInput);  // Envoie du message au serveur
-                        userInput.clear();  // Réinitialise la zone de texte
+                        m_client.sendMessage(userInput);
+                        userInput.clear();
                     }
                 }
-                // Sinon, ajoute le caractère au message en cours
-                else if (event.text.unicode < 128) {  // Limite aux caractères ASCII
+                else if (event.text.unicode < 128) {
                     userInput += static_cast<char>(event.text.unicode);
                 }
             }
