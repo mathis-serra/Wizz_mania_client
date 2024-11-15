@@ -14,5 +14,5 @@ private:
 
     sf::RenderWindow m_window;
     sf::Clock m_clock;
-    Client_2 &m_client;  // Référence vers le client
+    Client_2 &m_client;
 };

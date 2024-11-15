@@ -27,19 +27,19 @@ bool Client_2::connectToServer() {
 
     if (inet_pton(AF_INET, ipAddress.c_str(), &serverAddress.sin_addr) <= 0) {
         std::cerr << "Erreur : adresse IP invalide" << std::endl;
-        close(clientSocket); // Fermer le socket si inutilisable
+        close(clientSocket);
         return false;
     }
 
     if (connect(clientSocket, (sockaddr*)&serverAddress, sizeof(serverAddress)) == -1) {
         std::cerr << "Erreur : impossible de se connecter au serveur" << std::endl;
-        close(clientSocket); // Fermer le socket si inutilisable
+        close(clientSocket);
         return false;
     }
 
     std::cout << "Connexion établie avec le serveur" << std::endl;
 
-    // Démarrer un thread pour recevoir des messages
+
     receiveThread = std::thread(&Client_2::receiveMessage, this);
 
     return true;
