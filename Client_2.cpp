@@ -1,16 +1,14 @@
 #include "Client_2.h"
-#include <cerrno>
-#include <cstring>
 
 Client_2::Client_2(const std::string &ipAddress, int port)
     : ipAddress(ipAddress), port(port), clientSocket(-1) {}
 
 Client_2::~Client_2() {
     if (clientSocket != -1) {
-        close(clientSocket);
+        close(clientSocket); // Fermer le socket pour libérer les ressources
     }
     if (receiveThread.joinable()) {
-        receiveThread.join();
+        receiveThread.join(); // S'assurer que le thread se termine correctement
     }
 }
 
@@ -27,24 +25,21 @@ bool Client_2::connectToServer() {
 
     if (inet_pton(AF_INET, ipAddress.c_str(), &serverAddress.sin_addr) <= 0) {
         std::cerr << "Erreur : adresse IP invalide" << std::endl;
-        close(clientSocket);
         return false;
     }
 
     if (connect(clientSocket, (sockaddr*)&serverAddress, sizeof(serverAddress)) == -1) {
         std::cerr << "Erreur : impossible de se connecter au serveur" << std::endl;
-        close(clientSocket);
         return false;
     }
 
     std::cout << "Connexion établie avec le serveur" << std::endl;
 
-
+    // Démarrer un thread pour recevoir des messages
     receiveThread = std::thread(&Client_2::receiveMessage, this);
 
     return true;
 }
-
 
 void Client_2::receiveMessage() {
     char buffer[1024];
@@ -60,18 +55,20 @@ void Client_2::receiveMessage() {
             std::cerr << "Erreur lors de la réception du message : " << strerror(errno) << std::endl;
             break;
         }
-        if (clientSocket == -1) {
-            std::cerr << "Socket invalide. Impossible de recevoir des messages." << std::endl;
-            return;
-        }
     }
 }
 
 void Client_2::sendMessage(const std::string &message) {
-    ssize_t bytesSent = send(clientSocket, message.c_str(), message.length(), 0);
+    if (clientSocket == -1) {
+        std::cerr << "Erreur : le socket n'est pas connecté" << std::endl;
+        return;
+    }
+
+    ssize_t bytesSent = send(clientSocket, message.c_str(), message.size(), 0);
     if (bytesSent == -1) {
-        std::cerr << "Erreur lors de l'envoi du message" << std::endl;
+        std::cerr << "Erreur lors de l'envoi du message : " << strerror(errno) << std::endl;
     } else {
-        std::cout << "Message envoyé : " << message << std::endl;
+        std::cout << "Message envoyé : " << message << " (" << bytesSent << " octets)" << std::endl;
     }
 }
+
