@@ -30,53 +30,65 @@ void UIManager::addMessage(const std::string& message, MessageType type) {
     text.setCharacterSize(24);
     text.setFillColor(sf::Color::White);
 
+    // Word wrapping logic
     std::istringstream words(message);
     std::string word;
     std::string wrappedMessage;
     float lineWidth = 0.0f;
+    float maxLineWidth = 0.0f;  // Track the maximum line width
 
     while (words >> word) {
         sf::Text tempText = text;
         tempText.setString(word + " ");
         float wordWidth = tempText.getLocalBounds().width;
 
+        // If the word doesn't fit in the current line, start a new line
         if (lineWidth + wordWidth > maxInputWidth - 20) {
             wrappedMessage += "\n" + word + " ";
-            lineWidth = wordWidth;
+            lineWidth = wordWidth;  // Reset line width to the current word's width
         } else {
             wrappedMessage += word + " ";
             lineWidth += wordWidth;
         }
+
+        maxLineWidth = std::max(maxLineWidth, lineWidth);  // Keep track of the longest line
     }
 
     text.setString(wrappedMessage);
 
+    // Calculate bubble width dynamically based on the longest line
     sf::FloatRect textBounds = text.getLocalBounds();
-    float bubbleWidth = maxInputWidth;
+    float bubbleWidth = maxLineWidth + 20;  // Add some padding
     float bubbleHeight = textBounds.height + (text.getLineSpacing() * (std::count(wrappedMessage.begin(), wrappedMessage.end(), '\n') + 1)) + 20;
 
+    // Create the message bubble
     sf::RectangleShape bubble;
     bubble.setSize(sf::Vector2f(bubbleWidth, bubbleHeight));
     bubble.setFillColor(type == MessageType::Received ? sf::Color(87, 66, 64) : sf::Color(191, 165, 163));
     bubble.setOutlineThickness(1);
     bubble.setOutlineColor(sf::Color(159, 64, 65));
 
-    float xOffset = (type == MessageType::Received) ? 50.0f : (windowWidth - maxInputWidth - 50.0f);
+    // Set the position based on whether it's a sent or received message
+    float xOffset = (type == MessageType::Received) ? 50.0f : (windowWidth - bubbleWidth - 50.0f);
     float yOffset = currentHeight;
 
-    text.setPosition(xOffset + 10, yOffset + 10);
-    bubble.setPosition(xOffset, yOffset);
+    text.setPosition(xOffset + 10, yOffset + 10);  // Position text with padding
+    bubble.setPosition(xOffset, yOffset);  // Position the bubble
 
+    // Update currentHeight for the next message
     currentHeight += bubbleHeight + lineSpacing;
 
+    // Update scroll offset if necessary
     float maxScrollOffset = std::max(0.0f, currentHeight - maxInputHeight);
     if (currentHeight > maxInputHeight) {
         scrollOffset = maxScrollOffset;
     }
 
+    // Store the message and bubble
     messageBubbles.push_back({text, bubble});
     updateScroll();
 }
+
 
 void UIManager::handleTextEntered(sf::Uint32 unicode, std::string& userInput) {
     if (unicode == '\b') {
