@@ -1,6 +1,6 @@
-C:\Users\drvba\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=C:/Users/drvba/AppData/Local/Programs/CLion/bin/ninja/win/x64/ninja.exe -DCMAKE_C_COMPILER=C:/msys64/mingw64/bin/gcc.exe -DCMAKE_CXX_COMPILER=C:/msys64/mingw64/bin/g++.exe -G Ninja -S C:\Users\drvba\OneDrive\Bureau\CPPRT\Wizz_mania_client -B C:\Users\drvba\OneDrive\Bureau\CPPRT\Wizz_mania_client\cmake-build-debug
--- The C compiler identification is GNU 14.2.0
--- The CXX compiler identification is GNU 14.2.0
+C:\Users\walid\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=C:/Users/walid/AppData/Local/Programs/CLion/bin/ninja/win/x64/ninja.exe -DCMAKE_C_COMPILER=C:/msys64/mingw64/bin/gcc.exe -DCMAKE_CXX_COMPILER=C:/msys64/mingw64/bin/g++.exe -G Ninja -S C:\Users\walid\OneDrive\Bureau\la-plateforme\B2\devoirs\C++\CPPRT\Wizz_mania_client -B C:\Users\walid\OneDrive\Bureau\la-plateforme\B2\devoirs\C++\CPPRT\Wizz_mania_client\cmake-build-debug
+-- The C compiler identification is GNU 14.1.0
+-- The CXX compiler identification is GNU 14.1.0
 -- Detecting C compiler ABI info
 -- Detecting C compiler ABI info - done
 -- Check for working C compiler: C:/msys64/mingw64/bin/gcc.exe - skipped
@@ -11,10 +11,11 @@ C:\Users\drvba\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe -DCM
 -- Check for working CXX compiler: C:/msys64/mingw64/bin/g++.exe - skipped
 -- Detecting CXX compile features
 -- Detecting CXX compile features - done
+-- Found SFML 2.6.2 in C:/Users/walid/OneDrive/Bureau/la-plateforme/B2/devoirs/C++/CPPRT/Wizz_mania_client/SFML/lib/cmake/SFML
+-- Found OpenSSL: C:/Program Files/vcpkg/installed/x64-windows/lib/libcrypto.lib (found version "3.4.0")
 -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
 -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
 -- Found Threads: TRUE
--- Found SFML 2.6.1 in C:/msys64/mingw64/lib/cmake/SFML
--- Configuring done (3.4s)
+-- Configuring done (1.7s)
 -- Generating done (0.0s)
--- Build files have been written to: C:/Users/drvba/OneDrive/Bureau/CPPRT/Wizz_mania_client/cmake-build-debug
+-- Build files have been written to: C:/Users/walid/OneDrive/Bureau/la-plateforme/B2/devoirs/C++/CPPRT/Wizz_mania_client/cmake-build-debug

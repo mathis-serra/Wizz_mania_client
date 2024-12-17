@@ -1,6 +1,12 @@
 # ninja log v6
-4343	4661	7533651290071992	Wizz_mania_client2.exe	708af11ab36a7dbd
-26	2993	7533651246908070	CMakeFiles/Wizz_mania_client2.dir/Client_2.cpp.obj	3a94d28a1b029a4a
-20	3595	7533651246850940	CMakeFiles/Wizz_mania_client2.dir/main.cpp.obj	54a4753897e58e5d
-3	267	7533714268496983	build.ninja	b48036b9de2a5162
-32	4342	7533651246959323	CMakeFiles/Wizz_mania_client2.dir/WindowManager.cpp.obj	e4fd524ad49af3e3
+5	311	7561329425984367	build.ninja	d261201382a86fa4
+17	3035	7561324189884430	CMakeFiles/Wizz_mania_client2.dir/main.cpp.obj	9763bcf05caed1c
+3035	3209	7561324220065413	Wizz_mania_client2.exe	efeaccb46518ef11
+39	5236	7559828917573929	CMakeFiles/Wizz_mania_client2.dir/logic_files/cpp_files/MessageHandler.cpp.obj	2cfe4c316c65a0ef
+19	4587	7560414076565955	CMakeFiles/Wizz_mania_client2.dir/graphic_files/cpp_files/Windows.cpp.obj	3b40083c174ce49f
+35	1795	7559828917531038	CMakeFiles/Wizz_mania_client2.dir/logic_files/cpp_files/Crypto.cpp.obj	7489ce6c8bd33829
+44	5267	7559828917623931	CMakeFiles/Wizz_mania_client2.dir/logic_files/cpp_files/Client.cpp.obj	e2c6841850b4ee67
+31	4068	7559828917480487	CMakeFiles/Wizz_mania_client2.dir/logic_files/cpp_files/Network.cpp.obj	5630227f43564363
+38	1365	7559908635888486	CMakeFiles/Wizz_mania_client2.dir/graphic_files/cpp_files/WindowManager.cpp.obj	f2167a7f8385aff0
+18	1779	7560662785951630	CMakeFiles/Wizz_mania_client2.dir/graphic_files/cpp_files/UIManager.cpp.obj	bbc371087ec3a55f
+17	1019	7560660786043428	CMakeFiles/Wizz_mania_client2.dir/graphic_files/cpp_files/Button.cpp.obj	6412f263aecb7771

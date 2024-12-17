@@ -1,31 +1,32 @@
-#include "Client_2.h"
-#include "WindowManager.h"
+#include "logic_files/hpp_files/Client.h"
+#include "graphic_files/hpp_files/Windows.h"
 #include <iostream>
-
-
+#include <string>
 
 int main() {
-    Client_2 client("10.10.140.191", 42000);
-    std::cerr << "Tentative de connexion au serveur avec Client_2..." << std::endl;
+    // Client client("192.168.0.48", 42000);
+    Client client("10.10.5.55", 42000);
 
-
-    if (client.connectToServer()) {
-        std::cerr << "Connecte au serveur avec succes via Client_2." << std::endl;
-
-        std::thread sendMessageThread([&client]() {
-            client.sendMessage("");
-        });
-
-        WindowManager windowManager(client);
-        windowManager.openWindow();
-
-
-        if (sendMessageThread.joinable()) {
-            sendMessageThread.join();
-        }
-
-    } else {
-        std::cerr << "Impossible de se connecter au serveur avec Client_2." << std::endl;
+    if (!client.connectToServer()) {
+        std::cerr << "Échec de la connexion au serveur." << std::endl;
+        return 1;
     }
+    std::cout << "Connecté au serveur !" << std::endl;
+
+    Windows window("Client Réseau - SFML", 800, 600, client);
+
+    client.setMessageCallback([&window](const std::string& message) {
+        window.addReceivedMessage("Mathis : " + message);
+    });
+
+    client.startReceiving();
+
+    while (window.isRunning()) {
+        window.handleEvents();
+        window.update();
+        window.render();
+    }
+
     return 0;
 }
+
